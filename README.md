@@ -1,25 +1,38 @@
-# y-serverless
+# Serverless Websockets Template
 
- Serverless Provider using Websockets and DynamoDB for YJS. Easy deploy. Written in typescript.
+Websockets Template using DynamoDB to maintain connections and Lambda function. Can also run locally to test the the socket flow
 
- Huge shout out to [gaberogan](https://github.com/gaberogan/y-websocket-api/) original repo. 
+As easy as tweaking this [file](https://github.com/rlingineni/serverless-websockets-template/blob/main/helpers/sockets.ts):
 
- Open limitations:
+```javascript
 
- 1. Doesn't work with regular `y-websockets`. AWS sockets requires base64 strings. You need a modifided sockets provider from the client repo to pass b64 strings
+onConnection(){
 
- 2. Not optimized yet, so may create more clients and data than necessary
+}
+
+onDisconnect(){
+
+}
+
+onMessage(){
+ 
+}
+```
 
 
- ## Setup
+## Setup
 
+Load the template with
+```
+serverless create --template-url "https://github.com/rlingineni/serverless-websockets-template/tree/main" --path ./api
+```
 
- ### Testing Locally
- ```
- cd api
+### Testing Locally
+```
+cd api
 npm install
 npm run start
- ```
+```
 
 Spins up a local server on `ws://localhost:5000`
 
@@ -47,15 +60,17 @@ cd api
 serverless deploy
 ```
 
-
-IAM role to access all indexes is also necessary. Similar to this for the Lambda role:
+IAM role to access all indexes is also necessary. Make sure it exists. Similar to this for the Lambda role:
 ```
 "arn:aws:dynamodb:us-east-1:939884077921:table/WebSocketConnectionsTable/index/*"
 ```
-### See Logs
+
+### See Log Output
 ```
 serverless logs -f api
 ```
 
 ### Resources
-Creates a DynamoDB table to maintain documents and connection information.
+This function will creates a DynamoDB table to maintain room and connection information. 
+
+
