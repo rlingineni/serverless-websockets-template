@@ -6,17 +6,11 @@ As easy as tweaking this [file](https://github.com/rlingineni/serverless-websock
 
 ```javascript
 
-onConnection(){
+onConnection(){}
 
-}
+onDisconnect(){}
 
-onDisconnect(){
-
-}
-
-onMessage(){
- 
-}
+onMessage(){}
 ```
 
 
