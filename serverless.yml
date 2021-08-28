@@ -48,6 +48,7 @@ functions:
           - dynamodb:Scan
           - dynamodb:PutItem
           - dynamodb:Query 
+          - dynamodb:UpdateItem
         Resource:
           Fn::GetAtt:
             - ConnectionsTable
